@@ -96,7 +96,7 @@ public class AddPostsActivity extends AppCompatActivity implements SharedPrefere
 
     ArrayList<String> uidsFetched, namesFetched;
     int number_of_tagged;
-    TextView namesTaggedTv;
+    TextView namesTaggedTv  ,heading;
     String names = "";
 
 
@@ -117,6 +117,13 @@ public class AddPostsActivity extends AppCompatActivity implements SharedPrefere
         namesFetched = new ArrayList<>();
         number_of_tagged = 0;
         namesTaggedTv = findViewById(R.id.taggedUsersNamesTv);
+        heading = findViewById(R.id.PostTextView);
+
+
+        if(preferences.getString("newEvent" , "").equals("newOne")){
+            heading.setText("Add event");
+
+        }
 
 
         storage = FirebaseStorage.getInstance().getReference();
@@ -446,6 +453,9 @@ public class AddPostsActivity extends AppCompatActivity implements SharedPrefere
         super.onDestroy();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+
+        editor.remove("newEvent");
+        editor.apply();
 
         names = "";
         uidsFetched.clear();

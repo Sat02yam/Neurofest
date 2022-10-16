@@ -226,7 +226,7 @@ public class PostFeedAdapterClass extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (list.get(position).getPostUserUid().equals("photo")) {
+        if (true) {
             return imageGrid;
         } else {
             return videoGrid;

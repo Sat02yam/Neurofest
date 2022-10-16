@@ -79,9 +79,8 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
+            android:text="Neurofest is the annual tech fest of JSS ACADEMY OF TECHNICAL EDUCATION, technical skills are evaluated during this festival through a variety of technical events organised by various JSS departments and societies."
             android:textColor="#323030"
-            android:text="Neurofest is the annual tech fest of JSS ACADEMY OF TECHNICAL EDUCATION, powered by iNeuron.Students' technical skills are evaluated during this festival through a variety of technical events organised by various JSS departments and societies."
-
             android:textSize="18sp" />
 
 

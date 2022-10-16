@@ -54,6 +54,7 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
     private View view;
     private BroadcastReceiver mInternetConnectionReceiver;
     ImageButton settingsHamburger;
+    TextView admin;
 
 
     @Override
@@ -70,6 +71,9 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         userNameProfileTextView = view.findViewById(R.id.profile_name_current_user);
         collegeProfileTextView = view.findViewById(R.id.college_name_profile_current_user);
         profileImage = view.findViewById(R.id.profile_image1);
+        admin = view.findViewById(R.id.admin_current_user);
+
+
 
 
         settingsHamburger = view.findViewById(R.id.settings_hamburger);
@@ -78,10 +82,29 @@ public class ProfileFragment extends Fragment implements SharedPreferences.OnSha
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
+        if(mAuth.getCurrentUser().getUid().equals("6682FudOcQO6hddbORt3rmXWBih2")){
+            admin.setVisibility(View.VISIBLE);
+        }else {
+            admin.setVisibility(View.GONE);
+        }
+
+
+
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         editor = preferences.edit();
 
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext() , AddPostsActivity.class);
+
+                editor.putString("newEvent" , "newOne");
+                editor.apply();
+                intent.putExtra(POST_TYPE_PREFERENCE, "photo");
+                startActivity(intent);
+            }
+        });
         if (preferences.getString(MainActivityContainingFragment.USER_NAME, "").equals("") && preferences.getString(MainActivityContainingFragment.PROFILE_IMAGE, "").equals("")) {
             layout.setVisibility(View.INVISIBLE);
             loading.setVisibility(View.VISIBLE);
